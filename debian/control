@@ -1,0 +1,35 @@
+Source: idg-lib
+Section: science
+Priority: optional
+Maintainer: KERN packaging <packaging@kernsuite.info>
+Build-Depends: cmake, debhelper (>=9)
+Standards-Version: 3.9.8
+Homepage: https://gitlab.com/astron-idg/idg-lib
+
+Package: libidg-dev
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}, libidg-common, libidg-cpu, libidg-fft, libidg
+Description: Image Domain Gridding core library
+
+
+Package: libidg-common0
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Image Domain Gridding core library
+
+Package: libidg-cpu0
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Image Domain Gridding core library
+
+Package: libidg-fft0
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Image Domain Gridding core library
+
+Package: libidg0
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Image Domain Gridding core library
+
+

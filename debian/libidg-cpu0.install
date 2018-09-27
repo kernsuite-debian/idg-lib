@@ -1,0 +1,4 @@
+usr/lib/libidg-cpu.so.*
+usr/lib/idg-cpu/Optimized/*.so.*
+usr/lib/idg-cpu/Reference/*.so.*
+
