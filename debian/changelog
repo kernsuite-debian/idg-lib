@@ -1,5 +1,12 @@
-idg-lib (0-1) UNRELEASED; urgency=low
+idg-lib (0-1) bionic; urgency=medium
 
+  [ KERN packaging ]
   * Initial release.
 
- -- KERN packaging <packaging@kernsuite.info>  Thu, 27 Sep 2018 15:29:14 +0200
+  [ Gijs Molenaar ]
+  * add patch, small fixes
+  * add gpu stuff
+  * add missing dependencies
+  * New upstream version 0.0~git20180920.f0d7caf
+
+ -- KERN packaging <packaging@kernsuite.info>  Thu, 27 Sep 2018 16:52:02 +0200
