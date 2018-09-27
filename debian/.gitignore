@@ -8,4 +8,8 @@ libidg-dev/
 libidg-fft0/
 libidg0/
 tmp/
+libidg-cuda0/
+libidg-hybrid-cuda0/
+libidg-opencl0/
+python-idg/
 

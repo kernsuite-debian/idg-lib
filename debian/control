@@ -2,9 +2,15 @@ Source: idg-lib
 Section: science
 Priority: optional
 Maintainer: KERN packaging <packaging@kernsuite.info>
-Build-Depends: cmake, debhelper (>=9)
+Build-Depends:
+ cmake,
+ debhelper (>=9),
+ libclfft-dev,
+ dh-python,
+ python-all
 Standards-Version: 3.9.8
 Homepage: https://gitlab.com/astron-idg/idg-lib
+X-Python-Version: 2.7
 
 Package: libidg-dev
 Architecture: any
@@ -37,4 +43,23 @@ Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Description: Image Domain Gridding core library
 
+Package: libidg-cuda0
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Image Domain Gridding core library
 
+Package: libidg-hybrid-cuda0
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Image Domain Gridding core library
+
+Package: libidg-opencl0
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Image Domain Gridding core library
+
+
+Package: python-idg
+Architecture: all
+Depends:  ${misc:Depends}, ${shlibs:Depends}, ${python:Depends}
+Description: Image Domain Gridding core library (python2 module)
