@@ -24,9 +24,8 @@ add_library(
                            ${${PROJECT_NAME}_sources}
 )
 if (NOT BUILD_STATIC_LIBS)
-set_target_properties (${PROJECT_NAME} PROPERTIES
-    COMPILE_FLAGS "-fPIC"
-    SOVERSION 0
+set_target_properties (
+    ${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC"
 )
 endif()
 

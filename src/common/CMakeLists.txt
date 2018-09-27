@@ -31,7 +31,7 @@ add_library(
 	${PROJECT_NAME} OBJECT ${${PROJECT_NAME}_headers}
 	                       ${${PROJECT_NAME}_sources}
 )
-set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC" SOVERSION 0)
+set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC")
 
 # Copy header files
 install(
