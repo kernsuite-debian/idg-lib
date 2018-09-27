@@ -1,0 +1,11 @@
+.debhelper/
+files
+*.debhelper.log
+*.substvars
+libidg-common0/
+libidg-cpu0/
+libidg-dev/
+libidg-fft0/
+libidg0/
+tmp/
+

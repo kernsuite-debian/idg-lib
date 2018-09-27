@@ -1,0 +1,239 @@
+Description: Add missing SOVERSION 
+
+--- idg-lib-0.orig/src/CMakeLists.txt
++++ idg-lib-0/src/CMakeLists.txt
+@@ -44,6 +44,7 @@ endif()
+ set_target_properties(
+     idg-common PROPERTIES
+     PUBLIC_HEADER idg-common.h
++    SOVERSION 0
+ )
+ 
+ install(
+@@ -78,6 +79,7 @@ target_link_libraries(
+ set_target_properties(
+     idg-fft PROPERTIES
+     PUBLIC_HEADER idg-fft.h
++    SOVERSION 0
+ )
+ 
+ install(
+@@ -111,7 +113,9 @@ target_link_libraries (
+ )
+ 
+ set_target_properties(idg-cpu PROPERTIES
+-                      PUBLIC_HEADER idg-cpu.h)
++                      PUBLIC_HEADER idg-cpu.h
++                      SOVERSION 0
++  )
+ 
+ install(
+   TARGETS idg-cpu
+@@ -152,6 +156,7 @@ target_link_libraries (
+ set_target_properties(
+     idg-cuda PROPERTIES
+     PUBLIC_HEADER idg-cuda.h
++    SOVERSION 0
+ )
+ 
+ install(
+@@ -191,6 +196,7 @@ target_link_libraries (
+ set_target_properties (
+     idg-hybrid-cuda PROPERTIES
+     PUBLIC_HEADER idg-hybrid-cuda.h
++    SOVERSION 0
+ )
+ 
+ install(
+@@ -231,6 +237,7 @@ target_link_libraries(
+ set_target_properties(
+     idg-opencl PROPERTIES
+     PUBLIC_HEADER idg-opencl.h
++    SOVERSION 0
+ )
+ 
+ install(
+@@ -271,7 +278,9 @@ target_link_libraries (
+ )
+ 
+ set_target_properties(idg PROPERTIES
+-                      PUBLIC_HEADER idg.h)
++                      PUBLIC_HEADER idg.h
++                      SOVERSION 0
++                      )
+ 
+ install(
+     TARGETS idg
+--- idg-lib-0.orig/src/CPU/Optimized/CMakeLists.txt
++++ idg-lib-0/src/CPU/Optimized/CMakeLists.txt
+@@ -15,7 +15,7 @@ add_library(
+ 	                       ${${PROJECT_NAME}_sources}
+ )
+ if (NOT BUILD_STATIC_LIBS)
+-set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC")
++    set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC" SOVERSION 0)
+ endif()
+ 
+ # Copy header files
+--- idg-lib-0.orig/src/CPU/Optimized/kernels/CMakeLists.txt
++++ idg-lib-0/src/CPU/Optimized/kernels/CMakeLists.txt
+@@ -51,6 +51,14 @@ add_library(${PROJECT_NAME}-fft       Ke
+ add_library(${PROJECT_NAME}-adder-wstack     KernelAdderWStack.cpp)
+ add_library(${PROJECT_NAME}-splitter-wstack  KernelSplitterWStack.cpp)
+ 
++SET_TARGET_PROPERTIES(${PROJECT_NAME}-gridder PROPERTIES SOVERSION 0)
++SET_TARGET_PROPERTIES(${PROJECT_NAME}-degridder PROPERTIES SOVERSION 0)
++SET_TARGET_PROPERTIES(${PROJECT_NAME}-adder PROPERTIES SOVERSION 0)
++SET_TARGET_PROPERTIES(${PROJECT_NAME}-splitter PROPERTIES SOVERSION 0)
++SET_TARGET_PROPERTIES(${PROJECT_NAME}-fft PROPERTIES SOVERSION 0)
++SET_TARGET_PROPERTIES(${PROJECT_NAME}-adder-wstack PROPERTIES SOVERSION 0)
++SET_TARGET_PROPERTIES(${PROJECT_NAME}-splitter-wstack PROPERTIES SOVERSION 0)
++
+ # Copy kernel libraries
+ install(
+     TARGETS
+--- idg-lib-0.orig/src/CPU/Reference/CMakeLists.txt
++++ idg-lib-0/src/CPU/Reference/CMakeLists.txt
+@@ -15,7 +15,7 @@ add_library(
+                            ${${PROJECT_NAME}_sources}
+ )
+ if (NOT BUILD_STATIC_LIBS)
+-set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC")
++    set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC" SOVERSION 0)
+ endif()
+ 
+ # Copy header files
+--- idg-lib-0.orig/src/CPU/Reference/kernels/CMakeLists.txt
++++ idg-lib-0/src/CPU/Reference/kernels/CMakeLists.txt
+@@ -37,6 +37,12 @@ add_library(${PROJECT_NAME}-adder     Ke
+ add_library(${PROJECT_NAME}-splitter  KernelSplitter.cpp)
+ add_library(${PROJECT_NAME}-fft       KernelFFT.cpp)
+ 
++SET_TARGET_PROPERTIES(${PROJECT_NAME}-gridder PROPERTIES SOVERSION 0)
++SET_TARGET_PROPERTIES(${PROJECT_NAME}-degridder PROPERTIES SOVERSION 0)
++SET_TARGET_PROPERTIES(${PROJECT_NAME}-adder PROPERTIES SOVERSION 0)
++SET_TARGET_PROPERTIES(${PROJECT_NAME}-splitter PROPERTIES SOVERSION 0)
++SET_TARGET_PROPERTIES(${PROJECT_NAME}-fft PROPERTIES SOVERSION 0)
++
+ # Copy kernel libraries
+ install(
+     TARGETS
+--- idg-lib-0.orig/src/CPU/common/CMakeLists.txt
++++ idg-lib-0/src/CPU/common/CMakeLists.txt
+@@ -21,7 +21,7 @@ add_library(
+ 	                       ${${PROJECT_NAME}_sources}
+ )
+ if (NOT BUILD_STATIC_LIBS)
+-set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC")
++    set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC" SOVERSION 0)
+ endif()
+ 
+ # Copy header files
+--- idg-lib-0.orig/src/CUDA/Generic/CMakeLists.txt
++++ idg-lib-0/src/CUDA/Generic/CMakeLists.txt
+@@ -25,7 +25,7 @@ add_library(
+ )
+ if (NOT BUILD_STATIC_LIBS)
+ set_target_properties (
+-    ${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC")
++    ${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC" SOVERSION 0)
+ endif()
+ 
+ # Set install
+--- idg-lib-0.orig/src/CUDA/Unified/CMakeLists.txt
++++ idg-lib-0/src/CUDA/Unified/CMakeLists.txt
+@@ -25,7 +25,7 @@ add_library(
+ )
+ if (NOT BUILD_STATIC_LIBS)
+ set_target_properties (
+-    ${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC")
++    ${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC" SOVERSION 0)
+ endif()
+ 
+ # Set install
+--- idg-lib-0.orig/src/CUDA/common/CMakeLists.txt
++++ idg-lib-0/src/CUDA/common/CMakeLists.txt
+@@ -31,8 +31,9 @@ add_library(
+                            ${${PROJECT_NAME}_sources}
+ )
+ if (NOT BUILD_STATIC_LIBS)
+-set_target_properties (
+-    ${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC"
++set_target_properties (${PROJECT_NAME} PROPERTIES
++        COMPILE_FLAGS "-fPIC"
++        SOVERSION 0
+ )
+ endif()
+ 
+--- idg-lib-0.orig/src/Hybrid/CUDA/GenericOptimized/CMakeLists.txt
++++ idg-lib-0/src/Hybrid/CUDA/GenericOptimized/CMakeLists.txt
+@@ -24,8 +24,9 @@ add_library(
+                            ${${PROJECT_NAME}_sources}
+ )
+ if (NOT BUILD_STATIC_LIBS)
+-set_target_properties (
+-    ${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC"
++set_target_properties (${PROJECT_NAME} PROPERTIES
++    COMPILE_FLAGS "-fPIC"
++    SOVERSION 0
+ )
+ endif()
+ 
+--- idg-lib-0.orig/src/Hybrid/CUDA/UnifiedOptimized/CMakeLists.txt
++++ idg-lib-0/src/Hybrid/CUDA/UnifiedOptimized/CMakeLists.txt
+@@ -24,8 +24,9 @@ add_library(
+                            ${${PROJECT_NAME}_sources}
+ )
+ if (NOT BUILD_STATIC_LIBS)
+-set_target_properties (
+-    ${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC"
++set_target_properties ( ${PROJECT_NAME} PROPERTIES
++    COMPILE_FLAGS "-fPIC"
++    SOVERSION 0
+ )
+ endif()
+ 
+--- idg-lib-0.orig/src/OpenCL/Generic/CMakeLists.txt
++++ idg-lib-0/src/OpenCL/Generic/CMakeLists.txt
+@@ -23,7 +23,7 @@ add_library(
+ )
+ if (NOT BUILD_STATIC_LIBS)
+ set_target_properties (
+-    ${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC")
++    ${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC" SOVERSION 0)
+ endif()
+ if (${CMAKE_VERSION} VERSION_GREATER 2.8.12)
+ target_compile_options(${PROJECT_NAME} PRIVATE -Wno-deprecated-declarations)
+--- idg-lib-0.orig/src/OpenCL/common/CMakeLists.txt
++++ idg-lib-0/src/OpenCL/common/CMakeLists.txt
+@@ -21,7 +21,7 @@ add_library(
+                            ${${PROJECT_NAME}_sources}
+ )
+ if (NOT BUILD_STATIC_LIBS)
+-set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC")
++    set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC" SOVERSION 0)
+ endif()
+ if (${CMAKE_VERSION} VERSION_GREATER 2.8.12)
+ target_compile_options(${PROJECT_NAME} PRIVATE -Wno-deprecated-declarations)
+--- idg-lib-0.orig/src/common/CMakeLists.txt
++++ idg-lib-0/src/common/CMakeLists.txt
+@@ -31,7 +31,7 @@ add_library(
+ 	${PROJECT_NAME} OBJECT ${${PROJECT_NAME}_headers}
+ 	                       ${${PROJECT_NAME}_sources}
+ )
+-set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC")
++set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC" SOVERSION 0)
+ 
+ # Copy header files
+ install(
+--- idg-lib-0.orig/src/fft/CMakeLists.txt
++++ idg-lib-0/src/fft/CMakeLists.txt
+@@ -21,7 +21,7 @@ add_library(
+                            ${${PROJECT_NAME}_sources}
+     )
+ if (NOT BUILD_STATIC_LIBS)
+-set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC")
++    set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC" SOVERSION 0)
+ endif()
+ 
+ # Copy header files

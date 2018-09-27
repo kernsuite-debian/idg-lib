@@ -8,7 +8,12 @@ Homepage: https://gitlab.com/astron-idg/idg-lib
 
 Package: libidg-dev
 Architecture: any
-Depends: ${misc:Depends}, ${shlibs:Depends}, libidg-common, libidg-cpu, libidg-fft, libidg
+Depends:
+ ${misc:Depends},
+ libidg-common0 (= ${binary:Version}),
+ libidg-cpu0 (= ${binary:Version}),
+ libidg-fft0 (= ${binary:Version}),
+ libidg0 (= ${binary:Version})
 Description: Image Domain Gridding core library
 
 
